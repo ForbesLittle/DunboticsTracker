@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundraiser Tracker</title>
+    <style>
+        body {
+            background-color: #AEDFF7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #container {
+            display: flex;
+            width: 600px;
+            height: 300px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        #left-panel {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #333333;
+        }
+        #amount-left {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        #countdown {
+            font-size: 1.5em;
+        }
+        #right-panel {
+            width: 50px;
+            background-color: white;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+        }
+        #progress-bar {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        #progress-fill {
+            width: 100%;
+            background-color: #007BFF;
+            height: 0%;
+            border-radius: 3px 3px 0 0;
+            transition: height 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="left-panel">
+            <h1>Amount Left to Raise</h1>
+            <div id="amount-left"></div>
+            <h2>Time Left</h2>
+            <div id="countdown"></div>
+        </div>
+        <div id="right-panel">
+            <div id="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const targetDate = new Date('June 11, 2025 00:00:00');
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = 'The fundraiser has ended!';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('countdown').innerHTML =
+                days + ' days, ' +
+                hours + ' hours, ' +
+                minutes + ' minutes, ' +
+                seconds + ' seconds';
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Money Tracking
+        const goalAmount = 10200;
+        function updateProgress(raisedAmount) {
+            const amountLeft = goalAmount - raisedAmount;
+            const progressPercent = (raisedAmount / goalAmount) * 100;
+            document.getElementById('amount-left').textContent = '£' + amountLeft.toLocaleString();
+            document.getElementById('progress-fill').style.height = progressPercent + '%';
+        }
+        let raisedAmount = 0;
+        if (localStorage.getItem('raisedAmount')) {
+            raisedAmount = parseFloat(localStorage.getItem('raisedAmount'));
+        }
+        updateProgress(raisedAmount);
+        // Function to add money raised
+        function addMoney(amount) {
+            raisedAmount += amount;
+            localStorage.setItem('raisedAmount', raisedAmount);
+            updateProgress(raisedAmount);
+        }
+    </script>
+    <!-- To add money to the amount raised, open the browser console and call the function addMoney(amount), where amount is the number you want to add. For example, addMoney(500) will add £500 to the amount raised. -->
+</body>
+</html>
