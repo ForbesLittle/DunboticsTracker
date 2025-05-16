@@ -8,6 +8,14 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <style>
+        html, body {
+            box-sizing: border-box;
+            width: 100%;
+            min-width: 0;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
         body {
             background-color: #AEDFF7;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -63,21 +71,25 @@
 
         #right-panel {
             width: 50px;
+            min-width: 50px;
             background-color: white;
             display: flex;
             align-items: flex-end;
+            justify-content: center;
             padding: 10px;
         }
 
         #progress-bar {
             width: 100%;
             height: 100%;
+            max-width: 100%;
             background-color: white;
             border: 2px solid #007BFF;
             border-radius: 5px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            align-items: center;
             overflow: hidden;
         }
 
@@ -87,6 +99,7 @@
             height: 0%;
             border-radius: 3px 3px 0 0;
             transition: height 0.5s, width 0.5s;
+            max-width: 100%;
         }
 
         #donation-form,
@@ -187,9 +200,10 @@
             }
             #right-panel {
                 width: 100%;
+                min-width: 0;
                 height: 50px;
                 min-height: 40px;
-                padding: 0 18px 18px 18px;
+                padding: 0 12px 18px 12px;
                 align-items: flex-end;
                 justify-content: center;
                 order: 2;
@@ -198,6 +212,8 @@
                 height: 30px;
                 min-height: 24px;
                 width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
                 border-radius: 5px;
                 flex-direction: row;
                 justify-content: flex-start;
@@ -209,6 +225,7 @@
                 height: 100%;
                 border-radius: 3px 0 0 3px;
                 transition: width 0.5s, height 0.5s;
+                max-width: 100%;
             }
             #amount-left {
                 font-size: 2em;
