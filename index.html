@@ -9,12 +9,24 @@
             background-color: #AEDFF7;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .logo-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            margin-bottom: 20px;
         }
+        
+        .logo {
+            width: 120px;
+            height: auto;
+        }
+        
         #container {
             display: flex;
             width: 600px;
@@ -23,7 +35,9 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             overflow: hidden;
+            margin-bottom: 20px;
         }
+        
         #left-panel {
             flex: 1;
             padding: 20px;
@@ -32,13 +46,16 @@
             justify-content: center;
             color: #333333;
         }
+        
         #amount-left {
             font-size: 2.5em;
             margin-bottom: 20px;
         }
+        
         #countdown {
             font-size: 1.5em;
         }
+        
         #right-panel {
             width: 50px;
             background-color: white;
@@ -46,6 +63,7 @@
             align-items: flex-end;
             padding: 10px;
         }
+        
         #progress-bar {
             width: 100%;
             height: 100%;
@@ -56,6 +74,7 @@
             flex-direction: column;
             justify-content: flex-end;
         }
+        
         #progress-fill {
             width: 100%;
             background-color: #007BFF;
@@ -63,9 +82,83 @@
             border-radius: 3px 3px 0 0;
             transition: height 0.5s ease-in-out;
         }
+        
+        #donation-form {
+            width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccced6;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        #donations-list {
+            width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        #donations {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .donation-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .donation-item:last-child {
+            border-bottom: none;
+        }
+        
+        .donation-amount {
+            font-weight: bold;
+            color: #007BFF;
+        }
     </style>
 </head>
 <body>
+    <!-- Logo at top center -->
+    <div class="logo-container">
+        <img src="Dunbotics-logo.jpg" alt="Dunbotics Logo" class="logo">
+    </div>
+    
+    <!-- Fundraiser tracker -->
     <div id="container">
         <div id="left-panel">
             <h1>Amount Left to Raise</h1>
@@ -79,6 +172,27 @@
             </div>
         </div>
     </div>
+    
+    <!-- Donation form -->
+    <div id="donation-form">
+        <h2>Add New Donation</h2>
+        <div class="form-group">
+            <label for="donation-amount">Amount (£):</label>
+            <input type="number" id="donation-amount" min="0" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="donation-source">Source/Description:</label>
+            <input type="text" id="donation-source" placeholder="Where did this donation come from?" required>
+        </div>
+        <button id="submit-donation">Add Donation</button>
+    </div>
+    
+    <!-- Donations list -->
+    <div id="donations-list">
+        <h2>Recent Donations</h2>
+        <ul id="donations"></ul>
+    </div>
+    
     <script>
         // Countdown Timer
         function updateCountdown() {
@@ -107,24 +221,95 @@
 
         // Money Tracking
         const goalAmount = 10200;
-        function updateProgress(raisedAmount) {
-            const amountLeft = goalAmount - raisedAmount;
-            const progressPercent = (raisedAmount / goalAmount) * 100;
+        let raisedAmount = 0;
+        let donations = [];
+        
+        // Load saved data from localStorage
+        function loadSavedData() {
+            if (localStorage.getItem('raisedAmount')) {
+                raisedAmount = parseFloat(localStorage.getItem('raisedAmount'));
+            }
+            
+            if (localStorage.getItem('donations')) {
+                donations = JSON.parse(localStorage.getItem('donations'));
+                displayDonations();
+            }
+            
+            updateProgress(raisedAmount);
+        }
+        
+        function updateProgress(amount) {
+            const amountLeft = goalAmount - amount;
+            const progressPercent = (amount / goalAmount) * 100;
             document.getElementById('amount-left').textContent = '£' + amountLeft.toLocaleString();
             document.getElementById('progress-fill').style.height = progressPercent + '%';
         }
-        let raisedAmount = 0;
-        if (localStorage.getItem('raisedAmount')) {
-            raisedAmount = parseFloat(localStorage.getItem('raisedAmount'));
-        }
-        updateProgress(raisedAmount);
-        // Function to add money raised
-        function addMoney(amount) {
-            raisedAmount += amount;
+        
+        function addDonation(amount, source) {
+            const donation = {
+                amount: parseFloat(amount),
+                source: source,
+                date: new Date().toLocaleDateString()
+            };
+            
+            donations.unshift(donation); // Add to beginning of array
+            raisedAmount += donation.amount;
+            
+            // Save to localStorage
             localStorage.setItem('raisedAmount', raisedAmount);
+            localStorage.setItem('donations', JSON.stringify(donations));
+            
             updateProgress(raisedAmount);
+            displayDonations();
         }
+        
+        function displayDonations() {
+            const donationsList = document.getElementById('donations');
+            donationsList.innerHTML = '';
+            
+            donations.forEach(donation => {
+                const item = document.createElement('li');
+                item.className = 'donation-item';
+                item.innerHTML = `
+                    <span class="donation-amount">£${donation.amount.toLocaleString()}</span> - 
+                    ${donation.source} (${donation.date})
+                `;
+                donationsList.appendChild(item);
+            });
+        }
+        
+        // Handle form submission
+        document.getElementById('submit-donation').addEventListener('click', function() {
+            const amountInput = document.getElementById('donation-amount');
+            const sourceInput = document.getElementById('donation-source');
+            
+            const amount = parseFloat(amountInput.value);
+            const source = sourceInput.value.trim();
+            
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            if (!source) {
+                alert('Please enter a donation source');
+                return;
+            }
+            
+            addDonation(amount, source);
+            
+            // Clear the form
+            amountInput.value = '';
+            sourceInput.value = '';
+        });
+        
+        // Function to add money from console (keeping for backward compatibility)
+        function addMoney(amount) {
+            addDonation(amount, 'Added via console');
+        }
+        
+        // Load saved data when page loads
+        loadSavedData();
     </script>
-    <!-- To add money to the amount raised, open the browser console and call the function addMoney(amount), where amount is the number you want to add. For example, addMoney(500) will add £500 to the amount raised. -->
 </body>
 </html>
