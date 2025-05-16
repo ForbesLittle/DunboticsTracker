@@ -39,6 +39,20 @@
             height: auto;
         }
 
+        .private-bar {
+            background: #D32F2F;
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
         #container {
             display: flex;
             width: 600px;
@@ -167,6 +181,62 @@
             color: #007BFF;
         }
 
+        /* Password overlay */
+        #password-overlay {
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(173,223,247, 0.97);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #password-box {
+            background: #fff;
+            padding: 32px 28px 24px 28px;
+            border-radius: 14px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 260px;
+        }
+        #password-box label {
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        #password-input {
+            padding: 10px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            border: 1px solid #bbb;
+            width: 180px;
+            margin-bottom: 18px;
+        }
+        #password-error {
+            color: #D32F2F;
+            font-size: 1em;
+            margin-bottom: 8px;
+            min-height: 1.5em;
+        }
+        #password-submit {
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 22px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #password-submit:hover {
+            background: #0056b3;
+        }
+
         /* Responsive Design */
         @media (max-width: 700px) {
             #container,
@@ -179,6 +249,9 @@
             }
             .logo {
                 width: 80px;
+            }
+            .private-bar {
+                max-width: 100vw;
             }
         }
 
@@ -263,212 +336,271 @@
     </style>
 </head>
 <body>
-    <!-- Logo at top center -->
-    <div class="logo-container">
-        <img src="dunbotics-logo.jpg" alt="Dunbotics Logo" class="logo">
+    <!-- Password Overlay -->
+    <div id="password-overlay">
+        <form id="password-box" autocomplete="off">
+            <label for="password-input">Enter Passcode to Access</label>
+            <input type="password" id="password-input" autocomplete="off" autofocus>
+            <div id="password-error"></div>
+            <button id="password-submit" type="submit">Enter</button>
+        </form>
     </div>
-    
-    <!-- Fundraiser tracker -->
-    <div id="container">
-        <div id="left-panel">
-            <h1>Amount Left to Raise</h1>
-            <div id="amount-left">Loading...</div>
-            <h2>Time Left</h2>
-            <div id="countdown"></div>
+
+    <!-- Main content (hidden until password entered) -->
+    <div id="main-content" style="display:none;">
+        <!-- Logo at top center -->
+        <div class="logo-container">
+            <img src="dunbotics-logo.jpg" alt="Dunbotics Logo" class="logo">
         </div>
-        <div id="right-panel">
-            <div id="progress-bar">
-                <div id="progress-fill"></div>
+        <!-- Red private warning bar -->
+        <div class="private-bar">
+            This website is private, do not share with anyone outside of DHS Robotics
+        </div>
+        <!-- Fundraiser tracker -->
+        <div id="container">
+            <div id="left-panel">
+                <h1>Amount Left to Raise</h1>
+                <div id="amount-left">Loading...</div>
+                <h2>Time Left</h2>
+                <div id="countdown"></div>
+            </div>
+            <div id="right-panel">
+                <div id="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Donation form -->
-    <div id="donation-form">
-        <h2>Add New Donation</h2>
-        <div class="form-group">
-            <label for="donation-amount">Amount (£):</label>
-            <input type="number" id="donation-amount" min="0" step="0.01" required>
+        <!-- Donation form -->
+        <div id="donation-form">
+            <h2>Add New Donation</h2>
+            <div class="form-group">
+                <label for="donation-amount">Amount (£):</label>
+                <input type="number" id="donation-amount" min="0" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="donation-source">Source/Description:</label>
+                <input type="text" id="donation-source" placeholder="Where did this donation come from?" required>
+            </div>
+            <button id="submit-donation">Add Donation</button>
         </div>
-        <div class="form-group">
-            <label for="donation-source">Source/Description:</label>
-            <input type="text" id="donation-source" placeholder="Where did this donation come from?" required>
+        <!-- Donations list -->
+        <div id="donations-list">
+            <h2>Recent Donations</h2>
+            <ul id="donations"></ul>
         </div>
-        <button id="submit-donation">Add Donation</button>
     </div>
-    
-    <!-- Donations list -->
-    <div id="donations-list">
-        <h2>Recent Donations</h2>
-        <ul id="donations"></ul>
-    </div>
-    
     <script>
-        // Initialize Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyDTrXM_b9L5fo3QViey4MWdr1KMCtS1_rQ",
-            authDomain: "dunboticstracker.firebaseapp.com",
-            databaseURL: "https://dunboticstracker-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "dunboticstracker",
-            storageBucket: "dunboticstracker.firebasestorage.app",
-            messagingSenderId: "891845560852",
-            appId: "1:891845560852:web:c7b9e9b3fb2cc4f8df3501"
-        };
-        
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-        
-        // Reference to the database nodes
-        const donationsRef = database.ref('donations');
-        const totalRaisedRef = database.ref('totalRaised');
-        
-        // Countdown Timer
-        function updateCountdown() {
-            const now = new Date();
-            const targetDate = new Date('June 11, 2025 00:00:00');
-            const diff = targetDate - now;
-
-            if (diff <= 0) {
-                document.getElementById('countdown').innerHTML = 'The fundraiser has ended!';
-                return;
-            }
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / 1000 / 60) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
-
-            document.getElementById('countdown').innerHTML =
-                days + ' days, ' +
-                hours + ' hours, ' +
-                minutes + ' minutes, ' +
-                seconds + ' seconds';
+        // Password protection
+        function showMainContent() {
+            document.getElementById('password-overlay').style.display = 'none';
+            document.getElementById('main-content').style.display = '';
         }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Money Tracking
-        const goalAmount = 10200;
-        
-        // Update progress based on total raised
-        function updateProgress(raisedAmount) {
-            const amountLeft = goalAmount - raisedAmount;
-            const progressPercent = Math.min((raisedAmount / goalAmount) * 100, 100);
-            document.getElementById('amount-left').textContent = '£' + amountLeft.toLocaleString();
-
-            // Responsive: vertical bar on desktop, horizontal on mobile
-            if (window.innerWidth <= 600) {
-                document.getElementById('progress-fill').style.width = progressPercent + '%';
-                document.getElementById('progress-fill').style.height = '100%';
+        function setSessionLoggedIn() {
+            sessionStorage.setItem('dhsrobotics_loggedin', 'yes');
+        }
+        function isSessionLoggedIn() {
+            return sessionStorage.getItem('dhsrobotics_loggedin') === 'yes';
+        }
+        function handlePasswordSubmit(e) {
+            e.preventDefault();
+            var input = document.getElementById('password-input').value.trim();
+            if (input.toLowerCase() === 'lego') {
+                setSessionLoggedIn();
+                showMainContent();
             } else {
-                document.getElementById('progress-fill').style.height = progressPercent + '%';
-                document.getElementById('progress-fill').style.width = '100%';
+                document.getElementById('password-error').textContent = 'Incorrect passcode. Try again.';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
             }
         }
+        document.getElementById('password-box').addEventListener('submit', handlePasswordSubmit);
+        // On load, check session
+        window.addEventListener('DOMContentLoaded', function() {
+            if (isSessionLoggedIn()) {
+                showMainContent();
+            } else {
+                document.getElementById('password-overlay').style.display = 'flex';
+                document.getElementById('main-content').style.display = 'none';
+            }
+        });
 
-        window.addEventListener('resize', function() {
-            totalRaisedRef.once('value').then(snapshot => {
+        // Firebase and rest of the code only runs after login
+        function startApp() {
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyDTrXM_b9L5fo3QViey4MWdr1KMCtS1_rQ",
+                authDomain: "dunboticstracker.firebaseapp.com",
+                databaseURL: "https://dunboticstracker-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "dunboticstracker",
+                storageBucket: "dunboticstracker.firebasestorage.app",
+                messagingSenderId: "891845560852",
+                appId: "1:891845560852:web:c7b9e9b3fb2cc4f8df3501"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+            const database = firebase.database();
+
+            // Reference to the database nodes
+            const donationsRef = database.ref('donations');
+            const totalRaisedRef = database.ref('totalRaised');
+
+            // Countdown Timer
+            function updateCountdown() {
+                const now = new Date();
+                const targetDate = new Date('June 11, 2025 00:00:00');
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    document.getElementById('countdown').innerHTML = 'The fundraiser has ended!';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('countdown').innerHTML =
+                    days + ' days, ' +
+                    hours + ' hours, ' +
+                    minutes + ' minutes, ' +
+                    seconds + ' seconds';
+            }
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+
+            // Money Tracking
+            const goalAmount = 10200;
+
+            // Update progress based on total raised
+            function updateProgress(raisedAmount) {
+                const amountLeft = goalAmount - raisedAmount;
+                const progressPercent = Math.min((raisedAmount / goalAmount) * 100, 100);
+                document.getElementById('amount-left').textContent = '£' + amountLeft.toLocaleString();
+
+                // Responsive: vertical bar on desktop, horizontal on mobile
+                if (window.innerWidth <= 600) {
+                    document.getElementById('progress-fill').style.width = progressPercent + '%';
+                    document.getElementById('progress-fill').style.height = '100%';
+                } else {
+                    document.getElementById('progress-fill').style.height = progressPercent + '%';
+                    document.getElementById('progress-fill').style.width = '100%';
+                }
+            }
+
+            window.addEventListener('resize', function() {
+                totalRaisedRef.once('value').then(snapshot => {
+                    const totalRaised = snapshot.val() || 0;
+                    updateProgress(totalRaised);
+                });
+            });
+
+            // Add a new donation
+            function addDonation(amount, source) {
+                // Create a new donation entry
+                const newDonation = {
+                    amount: parseFloat(amount),
+                    source: source,
+                    date: new Date().toISOString(),
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                };
+
+                // Push to the donations list
+                donationsRef.push(newDonation)
+                    .then(() => {
+                        console.log("Donation added successfully");
+                    })
+                    .catch(error => {
+                        console.error("Error adding donation: ", error);
+                        alert("Error adding donation. Please try again.");
+                    });
+
+                // Update the total raised amount
+                totalRaisedRef.transaction(currentTotal => {
+                    return (currentTotal || 0) + parseFloat(amount);
+                });
+            }
+
+            // Display donations from Firebase
+            function displayDonations(donationsData) {
+                const donationsList = document.getElementById('donations');
+                donationsList.innerHTML = '';
+
+                // Convert object to array and sort by timestamp (newest first)
+                const donationsArray = [];
+                for (let key in donationsData) {
+                    const donation = donationsData[key];
+                    donation.id = key;
+                    donationsArray.push(donation);
+                }
+
+                donationsArray.sort((a, b) => b.timestamp - a.timestamp);
+
+                // Display each donation
+                donationsArray.forEach(donation => {
+                    const date = new Date(donation.date);
+                    const formattedDate = date.toLocaleDateString();
+
+                    const item = document.createElement('li');
+                    item.className = 'donation-item';
+                    item.innerHTML = `
+                        <span class="donation-amount">£${parseFloat(donation.amount).toLocaleString()}</span> - 
+                        ${donation.source} (${formattedDate})
+                    `;
+                    donationsList.appendChild(item);
+                });
+            }
+
+            // Listen for changes in the database
+            donationsRef.on('value', snapshot => {
+                const donations = snapshot.val() || {};
+                displayDonations(donations);
+            });
+
+            totalRaisedRef.on('value', snapshot => {
                 const totalRaised = snapshot.val() || 0;
                 updateProgress(totalRaised);
             });
-        });
-        
-        // Add a new donation
-        function addDonation(amount, source) {
-            // Create a new donation entry
-            const newDonation = {
-                amount: parseFloat(amount),
-                source: source,
-                date: new Date().toISOString(),
-                timestamp: firebase.database.ServerValue.TIMESTAMP
+
+            // Handle form submission
+            document.getElementById('submit-donation').addEventListener('click', function() {
+                const amountInput = document.getElementById('donation-amount');
+                const sourceInput = document.getElementById('donation-source');
+
+                const amount = parseFloat(amountInput.value);
+                const source = sourceInput.value.trim();
+
+                if (!amount || amount <= 0) {
+                    alert('Please enter a valid amount');
+                    return;
+                }
+
+                if (!source) {
+                    alert('Please enter a donation source');
+                    return;
+                }
+
+                addDonation(amount, source);
+
+                // Clear the form
+                amountInput.value = '';
+                sourceInput.value = '';
+            });
+
+            // Function to add money from console (for backward compatibility)
+            window.addMoney = function(amount) {
+                addDonation(amount, 'Added via console');
             };
-            
-            // Push to the donations list
-            donationsRef.push(newDonation)
-                .then(() => {
-                    console.log("Donation added successfully");
-                })
-                .catch(error => {
-                    console.error("Error adding donation: ", error);
-                    alert("Error adding donation. Please try again.");
-                });
-            
-            // Update the total raised amount
-            totalRaisedRef.transaction(currentTotal => {
-                return (currentTotal || 0) + parseFloat(amount);
-            });
         }
-        
-        // Display donations from Firebase
-        function displayDonations(donationsData) {
-            const donationsList = document.getElementById('donations');
-            donationsList.innerHTML = '';
-            
-            // Convert object to array and sort by timestamp (newest first)
-            const donationsArray = [];
-            for (let key in donationsData) {
-                const donation = donationsData[key];
-                donation.id = key;
-                donationsArray.push(donation);
-            }
-            
-            donationsArray.sort((a, b) => b.timestamp - a.timestamp);
-            
-            // Display each donation
-            donationsArray.forEach(donation => {
-                const date = new Date(donation.date);
-                const formattedDate = date.toLocaleDateString();
-                
-                const item = document.createElement('li');
-                item.className = 'donation-item';
-                item.innerHTML = `
-                    <span class="donation-amount">£${parseFloat(donation.amount).toLocaleString()}</span> - 
-                    ${donation.source} (${formattedDate})
-                `;
-                donationsList.appendChild(item);
-            });
+
+        // Only start app after login
+        function checkAndStartApp() {
+            if (isSessionLoggedIn()) startApp();
         }
-        
-        // Listen for changes in the database
-        donationsRef.on('value', snapshot => {
-            const donations = snapshot.val() || {};
-            displayDonations(donations);
-        });
-        
-        totalRaisedRef.on('value', snapshot => {
-            const totalRaised = snapshot.val() || 0;
-            updateProgress(totalRaised);
-        });
-        
-        // Handle form submission
-        document.getElementById('submit-donation').addEventListener('click', function() {
-            const amountInput = document.getElementById('donation-amount');
-            const sourceInput = document.getElementById('donation-source');
-            
-            const amount = parseFloat(amountInput.value);
-            const source = sourceInput.value.trim();
-            
-            if (!amount || amount <= 0) {
-                alert('Please enter a valid amount');
-                return;
-            }
-            
-            if (!source) {
-                alert('Please enter a donation source');
-                return;
-            }
-            
-            addDonation(amount, source);
-            
-            // Clear the form
-            amountInput.value = '';
-            sourceInput.value = '';
-        });
-        
-        // Function to add money from console (for backward compatibility)
-        function addMoney(amount) {
-            addDonation(amount, 'Added via console');
-        }
+        // On login, also start the app
+        document.getElementById('password-box').addEventListener('submit', checkAndStartApp);
+        // If already logged in, start app
+        if (isSessionLoggedIn()) startApp();
     </script>
 </body>
 </html>
