@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundraiser Tracker</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <style>
         body {
             background-color: #AEDFF7;
@@ -155,14 +158,14 @@
 <body>
     <!-- Logo at top center -->
     <div class="logo-container">
-        <img src="dunbotics-logo.jpg" alt="Dunbotics Logo" class="logo">
+        <img src="Dunbotics-logo.jpg" alt="Dunbotics Logo" class="logo">
     </div>
     
     <!-- Fundraiser tracker -->
     <div id="container">
         <div id="left-panel">
             <h1>Amount Left to Raise</h1>
-            <div id="amount-left"></div>
+            <div id="amount-left">Loading...</div>
             <h2>Time Left</h2>
             <div id="countdown"></div>
         </div>
@@ -194,6 +197,24 @@
     </div>
     
     <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTrXM_b9L5fo3QViey4MWdr1KMCtS1_rQ",
+            authDomain: "dunboticstracker.firebaseapp.com",
+            databaseURL: "https://dunboticstracker-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "dunboticstracker",
+            storageBucket: "dunboticstracker.firebasestorage.app",
+            messagingSenderId: "891845560852",
+            appId: "1:891845560852:web:c7b9e9b3fb2cc4f8df3501"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        
+        // Reference to the database nodes
+        const donationsRef = database.ref('donations');
+        const totalRaisedRef = database.ref('totalRaised');
+        
         // Countdown Timer
         function updateCountdown() {
             const now = new Date();
@@ -221,62 +242,81 @@
 
         // Money Tracking
         const goalAmount = 10200;
-        let raisedAmount = 0;
-        let donations = [];
         
-        // Load saved data from localStorage
-        function loadSavedData() {
-            if (localStorage.getItem('raisedAmount')) {
-                raisedAmount = parseFloat(localStorage.getItem('raisedAmount'));
-            }
-            
-            if (localStorage.getItem('donations')) {
-                donations = JSON.parse(localStorage.getItem('donations'));
-                displayDonations();
-            }
-            
-            updateProgress(raisedAmount);
-        }
-        
-        function updateProgress(amount) {
-            const amountLeft = goalAmount - amount;
-            const progressPercent = (amount / goalAmount) * 100;
+        // Update progress based on total raised
+        function updateProgress(raisedAmount) {
+            const amountLeft = goalAmount - raisedAmount;
+            const progressPercent = (raisedAmount / goalAmount) * 100;
             document.getElementById('amount-left').textContent = '£' + amountLeft.toLocaleString();
             document.getElementById('progress-fill').style.height = progressPercent + '%';
         }
         
+        // Add a new donation
         function addDonation(amount, source) {
-            const donation = {
+            // Create a new donation entry
+            const newDonation = {
                 amount: parseFloat(amount),
                 source: source,
-                date: new Date().toLocaleDateString()
+                date: new Date().toISOString(),
+                timestamp: firebase.database.ServerValue.TIMESTAMP
             };
             
-            donations.unshift(donation); // Add to beginning of array
-            raisedAmount += donation.amount;
+            // Push to the donations list
+            donationsRef.push(newDonation)
+                .then(() => {
+                    console.log("Donation added successfully");
+                })
+                .catch(error => {
+                    console.error("Error adding donation: ", error);
+                    alert("Error adding donation. Please try again.");
+                });
             
-            // Save to localStorage
-            localStorage.setItem('raisedAmount', raisedAmount);
-            localStorage.setItem('donations', JSON.stringify(donations));
-            
-            updateProgress(raisedAmount);
-            displayDonations();
+            // Update the total raised amount
+            totalRaisedRef.transaction(currentTotal => {
+                return (currentTotal || 0) + parseFloat(amount);
+            });
         }
         
-        function displayDonations() {
+        // Display donations from Firebase
+        function displayDonations(donationsData) {
             const donationsList = document.getElementById('donations');
             donationsList.innerHTML = '';
             
-            donations.forEach(donation => {
+            // Convert object to array and sort by timestamp (newest first)
+            const donationsArray = [];
+            for (let key in donationsData) {
+                const donation = donationsData[key];
+                donation.id = key;
+                donationsArray.push(donation);
+            }
+            
+            donationsArray.sort((a, b) => b.timestamp - a.timestamp);
+            
+            // Display each donation
+            donationsArray.forEach(donation => {
+                const date = new Date(donation.date);
+                const formattedDate = date.toLocaleDateString();
+                
                 const item = document.createElement('li');
                 item.className = 'donation-item';
                 item.innerHTML = `
-                    <span class="donation-amount">£${donation.amount.toLocaleString()}</span> - 
-                    ${donation.source} (${donation.date})
+                    <span class="donation-amount">£${parseFloat(donation.amount).toLocaleString()}</span> - 
+                    ${donation.source} (${formattedDate})
                 `;
                 donationsList.appendChild(item);
             });
         }
+        
+        // Listen for changes in the database
+        donationsRef.on('value', snapshot => {
+            const donations = snapshot.val() || {};
+            displayDonations(donations);
+        });
+        
+        totalRaisedRef.on('value', snapshot => {
+            const totalRaised = snapshot.val() || 0;
+            updateProgress(totalRaised);
+        });
         
         // Handle form submission
         document.getElementById('submit-donation').addEventListener('click', function() {
@@ -303,13 +343,10 @@
             sourceInput.value = '';
         });
         
-        // Function to add money from console (keeping for backward compatibility)
+        // Function to add money from console (for backward compatibility)
         function addMoney(amount) {
             addDonation(amount, 'Added via console');
         }
-        
-        // Load saved data when page loads
-        loadSavedData();
     </script>
 </body>
 </html>
