@@ -33,7 +33,6 @@
             justify-content: center;
             margin-bottom: 20px;
         }
-
         .logo {
             width: 120px;
             height: auto;
@@ -85,17 +84,19 @@
         }
 
         #right-panel {
-            width: 50px;
-            min-width: 50px;
+            width: 70px;
+            min-width: 70px;
             background-color: white;
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding: 10px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 10px 0 10px 0;
+            position: relative;
         }
 
         #progress-bar {
-            width: 100%;
+            width: 28px;
             height: 100%;
             max-width: 100%;
             background-color: white;
@@ -106,6 +107,7 @@
             justify-content: flex-end;
             align-items: center;
             overflow: hidden;
+            margin: 0 auto;
         }
 
         #progress-fill {
@@ -115,6 +117,15 @@
             border-radius: 3px 3px 0 0;
             transition: height 0.5s, width 0.5s;
             max-width: 100%;
+        }
+
+        #progress-percent {
+            margin-top: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #007BFF;
+            text-align: center;
+            width: 100%;
         }
 
         #donation-form,
@@ -193,6 +204,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
+        }
+        #password-logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
+        #password-logo {
+            width: 100px;
+            height: auto;
         }
         #password-box {
             background: #fff;
@@ -235,6 +256,36 @@
         }
         #password-submit:hover {
             background: #0056b3;
+        }
+
+        /* Loading spinner */
+        #loading-overlay {
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(173,223,247, 0.97);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #loading-logo {
+            width: 110px;
+            height: 110px;
+            animation: spin 1.1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+        #loading-text {
+            margin-top: 18px;
+            font-size: 1.2em;
+            color: #333;
+            letter-spacing: 1px;
         }
 
         /* Responsive Design */
@@ -301,6 +352,14 @@
                 transition: width 0.5s, height 0.5s;
                 max-width: 100%;
             }
+            #progress-percent {
+                margin-top: 0;
+                margin-left: 10px;
+                font-size: 1em;
+                width: auto;
+                display: inline-block;
+                vertical-align: middle;
+            }
             #amount-left {
                 font-size: 2em;
                 margin-bottom: 15px;
@@ -336,8 +395,17 @@
     </style>
 </head>
 <body>
+    <!-- Loading Spinner Overlay -->
+    <div id="loading-overlay">
+        <img id="loading-logo" src="dunbotics-logo-black.png" alt="Dunbotics Logo Loading">
+        <div id="loading-text">Loading...</div>
+    </div>
+
     <!-- Password Overlay -->
     <div id="password-overlay">
+        <div id="password-logo-container">
+            <img id="password-logo" src="dunbotics-logo.jpg" alt="Dunbotics Logo">
+        </div>
         <form id="password-box" autocomplete="off">
             <label for="password-input">Enter Passcode to Access</label>
             <input type="password" id="password-input" autocomplete="off" autofocus>
@@ -360,7 +428,7 @@
         <div id="container">
             <div id="left-panel">
                 <h1>Amount Left to Raise</h1>
-                <div id="amount-left">Loading...</div>
+                <div id="amount-left"></div>
                 <h2>Time Left</h2>
                 <div id="countdown"></div>
             </div>
@@ -368,6 +436,7 @@
                 <div id="progress-bar">
                     <div id="progress-fill"></div>
                 </div>
+                <div id="progress-percent"></div>
             </div>
         </div>
         <!-- Donation form -->
@@ -407,6 +476,10 @@
             if (input.toLowerCase() === 'lego') {
                 setSessionLoggedIn();
                 showMainContent();
+                // If loaded, hide spinner
+                if(window.firebaseLoaded) document.getElementById('loading-overlay').style.display = 'none';
+                else document.getElementById('loading-overlay').style.display = '';
+                startApp();
             } else {
                 document.getElementById('password-error').textContent = 'Incorrect passcode. Try again.';
                 document.getElementById('password-input').value = '';
@@ -418,31 +491,45 @@
         window.addEventListener('DOMContentLoaded', function() {
             if (isSessionLoggedIn()) {
                 showMainContent();
+                startApp();
             } else {
                 document.getElementById('password-overlay').style.display = 'flex';
                 document.getElementById('main-content').style.display = 'none';
+                document.getElementById('loading-overlay').style.display = 'none';
             }
         });
 
         // Firebase and rest of the code only runs after login
         function startApp() {
-            // Initialize Firebase
-            const firebaseConfig = {
-                apiKey: "AIzaSyDTrXM_b9L5fo3QViey4MWdr1KMCtS1_rQ",
-                authDomain: "dunboticstracker.firebaseapp.com",
-                databaseURL: "https://dunboticstracker-default-rtdb.europe-west1.firebasedatabase.app",
-                projectId: "dunboticstracker",
-                storageBucket: "dunboticstracker.firebasestorage.app",
-                messagingSenderId: "891845560852",
-                appId: "1:891845560852:web:c7b9e9b3fb2cc4f8df3501"
-            };
-
-            firebase.initializeApp(firebaseConfig);
+            // Initialize Firebase (if not already)
+            if (!window.firebaseStarted) {
+                window.firebaseStarted = true;
+                const firebaseConfig = {
+                    apiKey: "AIzaSyDTrXM_b9L5fo3QViey4MWdr1KMCtS1_rQ",
+                    authDomain: "dunboticstracker.firebaseapp.com",
+                    databaseURL: "https://dunboticstracker-default-rtdb.europe-west1.firebasedatabase.app",
+                    projectId: "dunboticstracker",
+                    storageBucket: "dunboticstracker.firebasestorage.app",
+                    messagingSenderId: "891845560852",
+                    appId: "1:891845560852:web:c7b9e9b3fb2cc4f8df3501"
+                };
+                firebase.initializeApp(firebaseConfig);
+            }
             const database = firebase.database();
 
             // Reference to the database nodes
             const donationsRef = database.ref('donations');
             const totalRaisedRef = database.ref('totalRaised');
+
+            // Loading spinner logic
+            let donationsLoaded = false;
+            let totalLoaded = false;
+            function checkLoaded() {
+                if (donationsLoaded && totalLoaded) {
+                    document.getElementById('loading-overlay').style.display = 'none';
+                    window.firebaseLoaded = true;
+                }
+            }
 
             // Countdown Timer
             function updateCountdown() {
@@ -477,6 +564,10 @@
                 const amountLeft = goalAmount - raisedAmount;
                 const progressPercent = Math.min((raisedAmount / goalAmount) * 100, 100);
                 document.getElementById('amount-left').textContent = '£' + amountLeft.toLocaleString();
+
+                // Percentage display
+                const percentText = Math.round(progressPercent) + "%";
+                document.getElementById('progress-percent').textContent = percentText;
 
                 // Responsive: vertical bar on desktop, horizontal on mobile
                 if (window.innerWidth <= 600) {
@@ -555,11 +646,15 @@
             donationsRef.on('value', snapshot => {
                 const donations = snapshot.val() || {};
                 displayDonations(donations);
+                donationsLoaded = true;
+                checkLoaded();
             });
 
             totalRaisedRef.on('value', snapshot => {
                 const totalRaised = snapshot.val() || 0;
                 updateProgress(totalRaised);
+                totalLoaded = true;
+                checkLoaded();
             });
 
             // Handle form submission
@@ -592,15 +687,6 @@
                 addDonation(amount, 'Added via console');
             };
         }
-
-        // Only start app after login
-        function checkAndStartApp() {
-            if (isSessionLoggedIn()) startApp();
-        }
-        // On login, also start the app
-        document.getElementById('password-box').addEventListener('submit', checkAndStartApp);
-        // If already logged in, start app
-        if (isSessionLoggedIn()) startApp();
     </script>
 </body>
 </html>
