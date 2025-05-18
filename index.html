@@ -52,6 +52,74 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
 
+        #main-wrapper {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+        #sidebar {
+            display: none;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-right: 30px;
+            min-width: 180px;
+            margin-top: 30px;
+        }
+        #sidebar a {
+            display: block;
+            margin: 0 0 12px 0;
+            padding: 10px 18px;
+            background: #fff;
+            color: #007BFF;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: background 0.2s, color 0.2s;
+        }
+        #sidebar a:hover {
+            background: #007BFF;
+            color: #fff;
+        }
+
+        #content-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        #logout-col {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 30px;
+            min-width: 120px;
+            margin-top: 30px;
+        }
+        #logout-btn {
+            padding: 10px 20px;
+            background: #D32F2F;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: background 0.2s;
+        }
+        #logout-btn:hover {
+            background: #b71c1c;
+        }
+
         #container {
             display: flex;
             width: 600px;
@@ -288,7 +356,54 @@
             letter-spacing: 1px;
         }
 
+        /* Footer */
+        #footer {
+            width: 100%;
+            text-align: center;
+            margin: 30px 0 8px 0;
+            color: #333;
+            font-size: 1em;
+            letter-spacing: 0.5px;
+        }
+
+        /* Special effects */
+        .flipped {
+            transform: rotate(180deg);
+            min-height: 100vh;
+        }
+        #main-content {
+            transition: transform 0.6s ease-in-out;
+        }
+
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            #main-wrapper {
+                max-width: 100vw;
+            }
+        }
+        @media (max-width: 1000px) {
+            #sidebar, #logout-col {
+                margin-right: 10px;
+                margin-left: 10px;
+            }
+        }
+        @media (min-width: 900px) {
+            #sidebar {
+                display: flex;
+            }
+            #logout-col {
+                display: flex;
+            }
+        }
+        @media (max-width: 900px) {
+            #main-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            #sidebar, #logout-col {
+                display: none !important;
+            }
+        }
         @media (max-width: 700px) {
             #container,
             #donation-form,
@@ -305,7 +420,6 @@
                 max-width: 100vw;
             }
         }
-
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -376,7 +490,6 @@
                 width: 100px;
             }
         }
-
         @media (max-width: 400px) {
             #left-panel {
                 padding: 12px 4px 6px 4px;
@@ -397,7 +510,7 @@
 <body>
     <!-- Loading Spinner Overlay -->
     <div id="loading-overlay">
-        <img id="loading-logo" src="dunbotics-logo-black.png" alt="Dunbotics Logo Loading">
+        <img id="loading-logo" src="dunbotics-logo.jpg" alt="Dunbotics Logo Loading">
         <div id="loading-text">Loading...</div>
     </div>
 
@@ -416,46 +529,62 @@
 
     <!-- Main content (hidden until password entered) -->
     <div id="main-content" style="display:none;">
-        <!-- Logo at top center -->
-        <div class="logo-container">
-            <img src="dunbotics-logo.jpg" alt="Dunbotics Logo" class="logo">
-        </div>
-        <!-- Red private warning bar -->
-        <div class="private-bar">
-            This website is private, do not share with anyone outside of DHS Robotics
-        </div>
-        <!-- Fundraiser tracker -->
-        <div id="container">
-            <div id="left-panel">
-                <h1>Amount Left to Raise</h1>
-                <div id="amount-left"></div>
-                <h2>Time Left</h2>
-                <div id="countdown"></div>
-            </div>
-            <div id="right-panel">
-                <div id="progress-bar">
-                    <div id="progress-fill"></div>
+        <div id="main-wrapper">
+            <!-- Sidebar (desktop only) -->
+            <nav id="sidebar">
+                <a href="https://www.crowdfunder.co.uk/p/dunbotics" target="_blank">Crowdfunder</a>
+                <a href="https://docs.google.com/spreadsheets/d/14rv4AIo6WC7PaZHH7fl9csZPxO9m1OeW-RnwNbotvho/edit?gid=0#gid=0" target="_blank">Sponsor Spreadsheet</a>
+            </nav>
+            <div id="content-col">
+                <!-- Logo at top center -->
+                <div class="logo-container">
+                    <img src="dunbotics-logo.jpg" alt="Dunbotics Logo" class="logo">
                 </div>
-                <div id="progress-percent"></div>
+                <!-- Red private warning bar -->
+                <div class="private-bar">
+                    This website is private, do not share with anyone outside of DHS Robotics
+                </div>
+                <!-- Fundraiser tracker -->
+                <div id="container">
+                    <div id="left-panel">
+                        <h1>Amount Left to Raise</h1>
+                        <div id="amount-left"></div>
+                        <h2>Time Left</h2>
+                        <div id="countdown"></div>
+                    </div>
+                    <div id="right-panel">
+                        <div id="progress-bar">
+                            <div id="progress-fill"></div>
+                        </div>
+                        <div id="progress-percent"></div>
+                    </div>
+                </div>
+                <!-- Donation form -->
+                <div id="donation-form">
+                    <h2>Add New Donation</h2>
+                    <div class="form-group">
+                        <label for="donation-amount">Amount (£):</label>
+                        <input type="number" id="donation-amount" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="donation-source">Source/Description:</label>
+                        <input type="text" id="donation-source" placeholder="Where did this donation come from?" required>
+                    </div>
+                    <button id="submit-donation">Add Donation</button>
+                </div>
+                <!-- Donations list -->
+                <div id="donations-list">
+                    <h2>Recent Donations</h2>
+                    <ul id="donations"></ul>
+                </div>
+            </div>
+            <!-- Logout button (desktop only) -->
+            <div id="logout-col">
+                <button id="logout-btn">Logout</button>
             </div>
         </div>
-        <!-- Donation form -->
-        <div id="donation-form">
-            <h2>Add New Donation</h2>
-            <div class="form-group">
-                <label for="donation-amount">Amount (£):</label>
-                <input type="number" id="donation-amount" min="0" step="0.01" required>
-            </div>
-            <div class="form-group">
-                <label for="donation-source">Source/Description:</label>
-                <input type="text" id="donation-source" placeholder="Where did this donation come from?" required>
-            </div>
-            <button id="submit-donation">Add Donation</button>
-        </div>
-        <!-- Donations list -->
-        <div id="donations-list">
-            <h2>Recent Donations</h2>
-            <ul id="donations"></ul>
+        <div id="footer">
+            Created by Forbes Little on behalf of Dunbotics 2025
         </div>
     </div>
     <script>
@@ -472,13 +601,26 @@
         }
         function handlePasswordSubmit(e) {
             e.preventDefault();
-            var input = document.getElementById('password-input').value.trim();
-            if (input.toLowerCase() === 'lego') {
-                setSessionLoggedIn();
+            const input = document.getElementById('password-input').value.trim().toLowerCase();
+            
+            if (input === 'lego' || input === 'viewer' || input === 'bomb on a train') {
+                sessionStorage.setItem('dhsrobotics_loggedin', 'yes');
+                
+                // Set access level
+                if (input === 'viewer') {
+                    sessionStorage.setItem('dhsrobotics_access', 'viewer');
+                } else {
+                    sessionStorage.setItem('dhsrobotics_access', 'admin');
+                }
+
+                // Handle special effects
+                if (input === 'bomb on a train') {
+                    sessionStorage.setItem('dhsrobotics_flipped', 'yes');
+                    document.getElementById('main-content').classList.add('flipped');
+                }
+                
                 showMainContent();
-                // If loaded, hide spinner
                 if(window.firebaseLoaded) document.getElementById('loading-overlay').style.display = 'none';
-                else document.getElementById('loading-overlay').style.display = '';
                 startApp();
             } else {
                 document.getElementById('password-error').textContent = 'Incorrect passcode. Try again.';
@@ -487,10 +629,28 @@
             }
         }
         document.getElementById('password-box').addEventListener('submit', handlePasswordSubmit);
+        
+        // Logout
+        function handleLogout() {
+            sessionStorage.removeItem('dhsrobotics_loggedin');
+            sessionStorage.removeItem('dhsrobotics_access');
+            sessionStorage.removeItem('dhsrobotics_flipped');
+            location.reload();
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', handleLogout);
+            }
+        });
+
         // On load, check session
         window.addEventListener('DOMContentLoaded', function() {
             if (isSessionLoggedIn()) {
                 showMainContent();
+                if (sessionStorage.getItem('dhsrobotics_flipped') === 'yes') {
+                    document.getElementById('main-content').classList.add('flipped');
+                }
                 startApp();
             } else {
                 document.getElementById('password-overlay').style.display = 'flex';
@@ -499,9 +659,9 @@
             }
         });
 
-        // Firebase and rest of the code only runs after login
+        // Firebase and main app
         function startApp() {
-            // Initialize Firebase (if not already)
+            // Initialize Firebase
             if (!window.firebaseStarted) {
                 window.firebaseStarted = true;
                 const firebaseConfig = {
@@ -515,9 +675,16 @@
                 };
                 firebase.initializeApp(firebaseConfig);
             }
-            const database = firebase.database();
 
-            // Reference to the database nodes
+            // Handle viewer mode
+            if (sessionStorage.getItem('dhsrobotics_access') === 'viewer') {
+                document.getElementById('donation-form').style.display = 'none';
+                window.addMoney = function() {
+                    alert('Permission denied. Viewer mode cannot add donations.');
+                };
+            }
+
+            const database = firebase.database();
             const donationsRef = database.ref('donations');
             const totalRaisedRef = database.ref('totalRaised');
 
@@ -684,6 +851,10 @@
 
             // Function to add money from console (for backward compatibility)
             window.addMoney = function(amount) {
+                if (sessionStorage.getItem('dhsrobotics_access') === 'viewer') {
+                    alert('Permission denied. Viewer mode cannot add donations.');
+                    return;
+                }
                 addDonation(amount, 'Added via console');
             };
         }
