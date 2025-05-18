@@ -375,6 +375,18 @@
             transition: transform 0.6s ease-in-out;
         }
 
+        /* McKenzie mode: spinning and color cycling */
+        .spin-and-colors {
+            animation: spin 2s linear infinite, backgroundCycle 8s linear infinite;
+        }
+        @keyframes backgroundCycle {
+            0% { background-color: #FF6B6B; }
+            25% { background-color: #4ECDC4; }
+            50% { background-color: #45B7D1; }
+            75% { background-color: #96CEB4; }
+            100% { background-color: #FF6B6B; }
+        }
+
         /* Responsive Design */
         @media (max-width: 1200px) {
             #main-wrapper {
@@ -533,7 +545,7 @@
             <!-- Sidebar (desktop only) -->
             <nav id="sidebar">
                 <a href="https://www.crowdfunder.co.uk/p/dunbotics" target="_blank">Crowdfunder</a>
-                <a href="https://docs.google.com/spreadsheets/d/14rv4AIo6WC7PaZHH7fl9csZPxO9m1OeW-RnwNbotvho/edit?gid=0#gid=0" target="_blank">Sponsor Spreadsheet</a>
+                <a id="sponsor-link" href="https://docs.google.com/spreadsheets/d/14rv4AIo6WC7PaZHH7fl9csZPxO9m1OeW-RnwNbotvho/edit?gid=0#gid=0" target="_blank">Sponsor Spreadsheet</a>
             </nav>
             <div id="content-col">
                 <!-- Logo at top center -->
@@ -603,7 +615,7 @@
             e.preventDefault();
             const input = document.getElementById('password-input').value.trim().toLowerCase();
             
-            if (input === 'lego' || input === 'viewer' || input === 'bomb on a train') {
+            if (['lego', 'viewer', 'bomb on a train', 'mckenzie'].includes(input)) {
                 sessionStorage.setItem('dhsrobotics_loggedin', 'yes');
                 
                 // Set access level
@@ -617,6 +629,10 @@
                 if (input === 'bomb on a train') {
                     sessionStorage.setItem('dhsrobotics_flipped', 'yes');
                     document.getElementById('main-content').classList.add('flipped');
+                }
+                if (input === 'mckenzie') {
+                    sessionStorage.setItem('dhsrobotics_spin', 'yes');
+                    document.body.classList.add('spin-and-colors');
                 }
                 
                 showMainContent();
@@ -635,6 +651,8 @@
             sessionStorage.removeItem('dhsrobotics_loggedin');
             sessionStorage.removeItem('dhsrobotics_access');
             sessionStorage.removeItem('dhsrobotics_flipped');
+            sessionStorage.removeItem('dhsrobotics_spin');
+            document.body.classList.remove('spin-and-colors');
             location.reload();
         }
         document.addEventListener('DOMContentLoaded', function() {
@@ -650,6 +668,9 @@
                 showMainContent();
                 if (sessionStorage.getItem('dhsrobotics_flipped') === 'yes') {
                     document.getElementById('main-content').classList.add('flipped');
+                }
+                if (sessionStorage.getItem('dhsrobotics_spin') === 'yes') {
+                    document.body.classList.add('spin-and-colors');
                 }
                 startApp();
             } else {
@@ -679,6 +700,8 @@
             // Handle viewer mode
             if (sessionStorage.getItem('dhsrobotics_access') === 'viewer') {
                 document.getElementById('donation-form').style.display = 'none';
+                var sponsorLink = document.getElementById('sponsor-link');
+                if (sponsorLink) sponsorLink.style.display = 'none';
                 window.addMoney = function() {
                     alert('Permission denied. Viewer mode cannot add donations.');
                 };
