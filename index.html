@@ -260,6 +260,39 @@
             color: #007BFF;
         }
 
+        /* Filter/search controls */
+        .donation-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+            flex-wrap: wrap;
+        }
+        #filter-select {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #007BFF;
+            font-size: 1em;
+            background: white;
+        }
+        #search-input {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #007BFF;
+            font-size: 1em;
+            min-width: 200px;
+        }
+        @media (max-width: 600px) {
+            .donation-controls {
+                flex-direction: column;
+            }
+            #search-input {
+                width: 100%;
+            }
+        }
+
         /* Password overlay */
         #password-overlay {
             position: fixed;
@@ -374,8 +407,6 @@
         #main-content {
             transition: transform 0.6s ease-in-out;
         }
-
-        /* McKenzie mode: spinning and color cycling */
         .spin-and-colors {
             animation: spin 2s linear infinite, backgroundCycle 8s linear infinite;
         }
@@ -586,7 +617,15 @@
                 </div>
                 <!-- Donations list -->
                 <div id="donations-list">
-                    <h2>Recent Donations</h2>
+                    <h2>Donations</h2>
+                    <div class="donation-controls">
+                        <select id="filter-select">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="highest">Highest Amount</option>
+                        </select>
+                        <input type="text" id="search-input" placeholder="Search donations...">
+                    </div>
                     <ul id="donations"></ul>
                 </div>
             </div>
@@ -679,6 +718,11 @@
                 document.getElementById('loading-overlay').style.display = 'none';
             }
         });
+
+        // Filter/search variables
+        let allDonations = [];
+        let currentFilter = 'newest';
+        let currentSearch = '';
 
         // Firebase and main app
         function startApp() {
@@ -802,40 +846,66 @@
                 });
             }
 
-            // Display donations from Firebase
-            function displayDonations(donationsData) {
+            // Display donations with filter/search
+            function displayDonations() {
                 const donationsList = document.getElementById('donations');
                 donationsList.innerHTML = '';
 
-                // Convert object to array and sort by timestamp (newest first)
-                const donationsArray = [];
-                for (let key in donationsData) {
-                    const donation = donationsData[key];
-                    donation.id = key;
-                    donationsArray.push(donation);
+                // Filter and sort donations
+                let filteredDonations = allDonations.filter(donation => {
+                    const searchLower = currentSearch.toLowerCase();
+                    return donation.source.toLowerCase().includes(searchLower) ||
+                           donation.amount.toString().includes(searchLower);
+                });
+
+                switch(currentFilter) {
+                    case 'oldest':
+                        filteredDonations.sort((a, b) => a.timestamp - b.timestamp);
+                        break;
+                    case 'highest':
+                        filteredDonations.sort((a, b) => b.amount - a.amount);
+                        break;
+                    default: // newest
+                        filteredDonations.sort((a, b) => b.timestamp - a.timestamp);
                 }
 
-                donationsArray.sort((a, b) => b.timestamp - a.timestamp);
-
                 // Display each donation
-                donationsArray.forEach(donation => {
+                filteredDonations.forEach(donation => {
                     const date = new Date(donation.date);
-                    const formattedDate = date.toLocaleDateString();
+                    const formattedDate = date.toLocaleDateString('en-GB', {
+                        day: '2-digit', month: 'short', year: 'numeric'
+                    });
 
                     const item = document.createElement('li');
                     item.className = 'donation-item';
                     item.innerHTML = `
-                        <span class="donation-amount">£${parseFloat(donation.amount).toLocaleString()}</span> - 
+                        <span class="donation-amount">£${donation.amount.toLocaleString()}</span> - 
                         ${donation.source} (${formattedDate})
                     `;
                     donationsList.appendChild(item);
                 });
             }
 
+            // Filter/search controls
+            document.getElementById('filter-select').addEventListener('change', function(e) {
+                currentFilter = e.target.value;
+                displayDonations();
+            });
+            document.getElementById('search-input').addEventListener('input', function(e) {
+                currentSearch = e.target.value;
+                displayDonations();
+            });
+
             // Listen for changes in the database
             donationsRef.on('value', snapshot => {
                 const donations = snapshot.val() || {};
-                displayDonations(donations);
+                allDonations = [];
+                for (let key in donations) {
+                    const donation = donations[key];
+                    donation.id = key;
+                    allDonations.push(donation);
+                }
+                displayDonations();
                 donationsLoaded = true;
                 checkLoaded();
             });
