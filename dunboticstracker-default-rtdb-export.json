@@ -1,0 +1,905 @@
+{
+  "donations": {
+    "-OQNGko_lWsaGVXGXS_f": {
+      "amount": 500,
+      "date": "2025-05-16T08:47:54.428Z",
+      "source": "Gordon Electrical",
+      "timestamp": 1747385257282
+    },
+    "-OQUvbHn_YoSQ0Z98z3N": {
+      "amount": 250,
+      "date": "2025-05-17T20:28:08.516Z",
+      "source": "CF - Scott Smith",
+      "timestamp": 1747513668816
+    },
+    "-OQUvfE3iKDKBsxhXjsX": {
+      "amount": 10,
+      "date": "2025-05-17T20:28:24.661Z",
+      "source": "CF - Nicola Newlands",
+      "timestamp": 1747513684960
+    },
+    "-OQUviaAenLh5IlObhEj": {
+      "amount": 50,
+      "date": "2025-05-17T20:28:38.428Z",
+      "source": "CF - Djfryan",
+      "timestamp": 1747513698728
+    },
+    "-OQUvm5dVIHFH4wxv6w9": {
+      "amount": 20,
+      "date": "2025-05-17T20:28:52.794Z",
+      "source": "CF - Jim Allan",
+      "timestamp": 1747513713092
+    },
+    "-OQUvoonaAKEqbTmKHB-": {
+      "amount": 100,
+      "date": "2025-05-17T20:29:03.940Z",
+      "source": "CF - Jude Smith",
+      "timestamp": 1747513724237
+    },
+    "-OQUvsbdVoc2f0X6q_6o": {
+      "amount": 20,
+      "date": "2025-05-17T20:29:19.482Z",
+      "source": "CF - Lynne Dawson Gilmore",
+      "timestamp": 1747513739781
+    },
+    "-OQUvwNtx89hMmCDf7hr": {
+      "amount": 50,
+      "date": "2025-05-17T20:29:34.922Z",
+      "source": "CF - Paula Jorda",
+      "timestamp": 1747513755219
+    },
+    "-OQUwx9BqZHoRUkG0M_b": {
+      "amount": 15,
+      "date": "2025-05-17T20:34:00.221Z",
+      "source": "CF - Elaine Miller",
+      "timestamp": 1747514020516
+    },
+    "-OQV5mX_sP1xGyjHEoa7": {
+      "amount": 40,
+      "date": "2025-05-17T21:16:58.980Z",
+      "source": "CF - Richard Payne",
+      "timestamp": 1747516599237
+    },
+    "-OQV5pnuKxO5JXQUXF52": {
+      "amount": 10,
+      "date": "2025-05-17T21:17:12.377Z",
+      "source": "CF - Kevin Low",
+      "timestamp": 1747516612637
+    },
+    "-OQWyUpeZQ5KkVnGrkeB": {
+      "amount": 40,
+      "date": "2025-05-18T05:59:39.116Z",
+      "source": "CF - Alex McMaster (17/07/2025)",
+      "timestamp": 1747547979165
+    },
+    "-OQXXsllNfq9jCEqek9B": {
+      "amount": 20,
+      "date": "2025-05-18T08:38:38.443Z",
+      "source": "CF - Stuart West",
+      "timestamp": 1747557518487
+    },
+    "-OQXXwGBHI39SyG-wwVp": {
+      "amount": 10,
+      "date": "2025-05-18T08:38:52.743Z",
+      "source": "CF - Mrs Hooks",
+      "timestamp": 1747557532789
+    },
+    "-OQXY-U0BwIfgbNqUbJx": {
+      "amount": 100,
+      "date": "2025-05-18T08:39:10.012Z",
+      "source": "The Wee Nail Room",
+      "timestamp": 1747557550055
+    },
+    "-OQXY2M8cw0bR9j7JXtm": {
+      "amount": 10,
+      "date": "2025-05-18T08:39:21.796Z",
+      "source": "Peter 'Voidtech' Owen",
+      "timestamp": 1747557561858
+    },
+    "-OQXY5cGi6uU4Y6veD1g": {
+      "amount": 20,
+      "date": "2025-05-18T08:39:35.180Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747557575222
+    },
+    "-OQXb27Vt8YshE19mg0n": {
+      "amount": 20,
+      "date": "2025-05-18T08:56:49.435Z",
+      "source": "CF - Thomas Eccles",
+      "timestamp": 1747558609500
+    },
+    "-OQXb5kI-UsvwMxNcWYt": {
+      "amount": 5,
+      "date": "2025-05-18T08:57:04.270Z",
+      "source": "CF - Aileen Beaton",
+      "timestamp": 1747558624334
+    },
+    "-OQXb8em39ugpBwyFuPx": {
+      "amount": 20,
+      "date": "2025-05-18T08:57:16.205Z",
+      "source": "CF - John Burns",
+      "timestamp": 1747558636269
+    },
+    "-OQXojdHjRvEvRlH6Brs": {
+      "amount": 40,
+      "date": "2025-05-18T09:56:39.629Z",
+      "source": "CF - Jane Graham",
+      "timestamp": 1747562199770
+    },
+    "-OQXooJXRiYzJqBYOHGv": {
+      "amount": 50,
+      "date": "2025-05-18T09:56:58.781Z",
+      "source": "CF - Rod Henwood",
+      "timestamp": 1747562218923
+    },
+    "-OQXrZBIDuLe5LFyVAdN": {
+      "amount": 10,
+      "date": "2025-05-18T10:08:59.553Z",
+      "source": "CF - Sharlene Hill",
+      "timestamp": 1747562939711
+    },
+    "-OQXr_zv4dFNiE8S6GiY": {
+      "amount": 20,
+      "date": "2025-05-18T10:09:06.953Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747562947110
+    },
+    "-OQY0V5zAwbBkLh-_Wzy": {
+      "amount": 50,
+      "date": "2025-05-18T10:52:24.269Z",
+      "source": "CF - Natalie Kirschstein",
+      "timestamp": 1747565544379
+    },
+    "-OQY3F9H4WT405m6c_nl": {
+      "amount": 5,
+      "date": "2025-05-18T11:04:25.376Z",
+      "source": "CF - Rachel Matthews",
+      "timestamp": 1747566265449
+    },
+    "-OQY3K1YUvHYoAlehpDe": {
+      "amount": 15,
+      "date": "2025-05-18T11:04:45.361Z",
+      "source": "CF - Fiona Fitzpatrick",
+      "timestamp": 1747566285433
+    },
+    "-OQY9alSRUZkdHGpReUD": {
+      "amount": 40,
+      "date": "2025-05-18T11:32:10.859Z",
+      "source": "CF - Fiona Cheyne",
+      "timestamp": 1747567930970
+    },
+    "-OQYOefgexKngs10HwZz": {
+      "amount": 50,
+      "date": "2025-05-18T12:37:58.117Z",
+      "source": "CF - Ian Tervit",
+      "timestamp": 1747571878647
+    },
+    "-OQYOl20QffLJHvKWO7U": {
+      "amount": 25,
+      "date": "2025-05-18T12:38:24.185Z",
+      "source": "CF -  Susan Morris",
+      "timestamp": 1747571904715
+    },
+    "-OQYOoXTWkTkenz9OWcy": {
+      "amount": 10,
+      "date": "2025-05-18T12:38:38.487Z",
+      "source": "CF - Wendy Stoddart",
+      "timestamp": 1747571919015
+    },
+    "-OQYOr6KLjSX4d4xTLAe": {
+      "amount": 10,
+      "date": "2025-05-18T12:38:49.038Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747571929566
+    },
+    "-OQYOvSDljYrCsBaB_O7": {
+      "amount": 20,
+      "date": "2025-05-18T12:39:06.823Z",
+      "source": "CF - Christine McClymont",
+      "timestamp": 1747571947353
+    },
+    "-OQYUqzVUdUMv0lFXLOO": {
+      "amount": 25,
+      "date": "2025-05-18T13:05:01.892Z",
+      "source": "CF - Lesley Haylock",
+      "timestamp": 1747573501984
+    },
+    "-OQYWA8B9qv0tLJgA_Op": {
+      "amount": 20,
+      "date": "2025-05-18T13:10:46.576Z",
+      "source": "CF - Kirsty Hislop",
+      "timestamp": 1747573846675
+    },
+    "-OQYWCoamfc1lQjeQpTU": {
+      "amount": 40,
+      "date": "2025-05-18T13:10:57.546Z",
+      "source": "CF - Vanessa Williamson",
+      "timestamp": 1747573857647
+    },
+    "-OQYYePQZ5jtT1XVwiaA": {
+      "amount": 10,
+      "date": "2025-05-18T13:21:59.129Z",
+      "source": "CF - James Hunter",
+      "timestamp": 1747574499001
+    },
+    "-OQYyMisDUrahPIHKe6T": {
+      "amount": 10,
+      "date": "2025-05-18T15:18:40.610Z",
+      "source": "CF - A Currie",
+      "timestamp": 1747581500375
+    },
+    "-OQYyRVyetmqy9GOSfuj": {
+      "amount": 20,
+      "date": "2025-05-18T15:19:00.200Z",
+      "source": "CF - Rachel Robertson",
+      "timestamp": 1747581519965
+    },
+    "-OQYyTcjCpmcrtIpIbC9": {
+      "amount": 10,
+      "date": "2025-05-18T15:19:08.889Z",
+      "source": "CF - Claire OKane",
+      "timestamp": 1747581528653
+    },
+    "-OQYyWoP_Xate55fiba6": {
+      "amount": 20,
+      "date": "2025-05-18T15:19:21.924Z",
+      "source": "CF - Marilyn McClymont",
+      "timestamp": 1747581541688
+    },
+    "-OQZ6yMNs236fDj-z9D7": {
+      "amount": 100,
+      "date": "2025-05-18T16:00:38.183Z",
+      "source": "Puchan Clan",
+      "timestamp": 1747584017908
+    },
+    "-OQZglvS7rFWSmGNBBnR": {
+      "amount": 20,
+      "date": "2025-05-18T18:41:06.276Z",
+      "source": "CF - Gary 'Shorter than Mr McKenzie' Connery",
+      "timestamp": 1747593666305
+    },
+    "-OQZgpmLxChRyT6PTiGb": {
+      "amount": 50,
+      "date": "2025-05-18T18:41:22.077Z",
+      "source": "CF - Pippa McGregor",
+      "timestamp": 1747593682104
+    },
+    "-OQZgxG_JLutaACZjCt8": {
+      "amount": 15,
+      "date": "2025-05-18T18:41:52.748Z",
+      "source": "CF - Mrs Gracie",
+      "timestamp": 1747593712775
+    },
+    "-OQZh5dbgPR-_RHKB4DE": {
+      "amount": 10,
+      "date": "2025-05-18T18:42:31.150Z",
+      "source": "Lynn Stratton",
+      "timestamp": 1747593751180
+    },
+    "-OQZh8-xxkDsJw272z0L": {
+      "amount": 40,
+      "date": "2025-05-18T18:42:40.836Z",
+      "source": "CF - Susan Henderson",
+      "timestamp": 1747593760867
+    },
+    "-OQZhK6Fpak7rtyv7jlH": {
+      "amount": 25,
+      "date": "2025-05-18T18:43:30.391Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747593810425
+    },
+    "-OQZkmktuc3xkRqgyQ4o": {
+      "amount": 10,
+      "date": "2025-05-18T18:58:58.568Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747594718134
+    },
+    "-OQZkrzFOGGRJ7RURjz4": {
+      "amount": 15,
+      "date": "2025-05-18T18:59:19.967Z",
+      "source": "CF - Dawn Gater",
+      "timestamp": 1747594739531
+    },
+    "-OQZkt6i43i-M32gAMhx": {
+      "amount": 10,
+      "date": "2025-05-18T18:59:24.604Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747594744168
+    },
+    "-OQZxME4H8rJgoCFlg9O": {
+      "amount": 10,
+      "date": "2025-05-18T19:53:53.894Z",
+      "source": "CF - Kate Fullbrook",
+      "timestamp": 1747598014214
+    },
+    "-OQZxOI4vGZs-2OOwlKF": {
+      "amount": 25,
+      "date": "2025-05-18T19:54:02.342Z",
+      "source": "CF- Samantha hele",
+      "timestamp": 1747598021856
+    },
+    "-OQZxSSAw6u_5aFKiucm": {
+      "amount": 10,
+      "date": "2025-05-18T19:54:19.372Z",
+      "source": "CF - Catherine Taylor",
+      "timestamp": 1747598038885
+    },
+    "-OQ_-1M_m6uYUf-qnRWI": {
+      "amount": 20,
+      "date": "2025-05-18T20:05:34.854Z",
+      "source": "CF - Margaret Roy",
+      "timestamp": 1747598714840
+    },
+    "-OQ_-3ljJeG4CX_SbUix": {
+      "amount": 5,
+      "date": "2025-05-18T20:05:44.720Z",
+      "source": "CF -  Alan Atk",
+      "timestamp": 1747598724225
+    },
+    "-OQ_4FTrxqkbsZU3N1iO": {
+      "amount": 50,
+      "date": "2025-05-18T20:28:23.384Z",
+      "source": "Mr Welsh",
+      "timestamp": 1747600082868
+    },
+    "-OQ_6ubdy1ZNc6XYK0KL": {
+      "amount": 100,
+      "date": "2025-05-18T20:40:00.266Z",
+      "source": "CF - Whitworth Grandparents",
+      "timestamp": 1747600779741
+    },
+    "-OQbDnup7NMb_znl5LLC": {
+      "amount": 25,
+      "date": "2025-05-19T06:29:01.781Z",
+      "source": "CF - Anneli Spence",
+      "timestamp": 1747636141815
+    },
+    "-OQbDt4o25pdGrcBOfv1": {
+      "amount": 100,
+      "date": "2025-05-19T06:29:22.964Z",
+      "source": "CF - Fiona Randles",
+      "timestamp": 1747636162997
+    },
+    "-OQbDxHs486IOeuZsq6o": {
+      "amount": 15,
+      "date": "2025-05-19T06:29:40.184Z",
+      "source": "CF - KKSH",
+      "timestamp": 1747636180221
+    },
+    "-OQbE-6Nu8aDtH9Lnzhj": {
+      "amount": 40,
+      "date": "2025-05-19T06:29:51.736Z",
+      "source": "CF - Patricia Eccles",
+      "timestamp": 1747636191774
+    },
+    "-OQbE1mCtCKWpBhWjnJU": {
+      "amount": 10,
+      "date": "2025-05-19T06:30:02.669Z",
+      "source": "CF - Vicki Ward",
+      "timestamp": 1747636202708
+    },
+    "-OQbE4VgvYvma7jez6Jh": {
+      "amount": 10,
+      "date": "2025-05-19T06:30:13.836Z",
+      "source": "CF - Penny Williams",
+      "timestamp": 1747636213876
+    },
+    "-OQcIEUYik-Zb5U7Crkh": {
+      "amount": 10,
+      "date": "2025-05-19T11:28:22.816Z",
+      "source": "Graeme McLean",
+      "timestamp": 1747654080511
+    },
+    "-OQcIH1vbx9WHgd1-0XE": {
+      "amount": 50,
+      "date": "2025-05-19T11:28:33.272Z",
+      "source": "CF -  Ben Winfrey",
+      "timestamp": 1747654090967
+    },
+    "-OQcIKDYnOheJDS6OFZ4": {
+      "amount": 100,
+      "date": "2025-05-19T11:28:46.304Z",
+      "source": "CF - Oliver Worrall",
+      "timestamp": 1747654104005
+    },
+    "-OQcIMikQLZUIdP_Ho8P": {
+      "amount": 20,
+      "date": "2025-05-19T11:28:56.557Z",
+      "source": "CF - Sarah Rennie",
+      "timestamp": 1747654114253
+    },
+    "-OQcIP9en84_u571a2mU": {
+      "amount": 50,
+      "date": "2025-05-19T11:29:06.535Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747654124229
+    },
+    "-OQcIT-y_4-shbNQ1k-i": {
+      "amount": 20,
+      "date": "2025-05-19T11:29:22.299Z",
+      "source": "CF - Rebecca Pollard",
+      "timestamp": 1747654139991
+    },
+    "-OQcIV_65BGJm-FNRY8R": {
+      "amount": 10,
+      "date": "2025-05-19T11:29:32.804Z",
+      "source": "CF - Robin Taylor",
+      "timestamp": 1747654150498
+    },
+    "-OQcscpoXW0x-lRhsD3Q": {
+      "amount": 40,
+      "date": "2025-05-19T14:11:45.969Z",
+      "source": "CF - Isobel McMaster",
+      "timestamp": 1747663883517
+    },
+    "-OQcsfiZngeb7Y27HA3q": {
+      "amount": 20,
+      "date": "2025-05-19T14:11:57.793Z",
+      "source": "CF - Alexander Small",
+      "timestamp": 1747663895342
+    },
+    "-OQcsiMTwc_XLEhAt4WB": {
+      "amount": 20,
+      "date": "2025-05-19T14:12:08.603Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747663906149
+    },
+    "-OQd59OnVJruuYZSKdjV": {
+      "amount": 1000,
+      "date": "2025-05-19T15:10:29.067Z",
+      "source": "EM & I",
+      "timestamp": 1747667429012
+    },
+    "-OQd5Z8Xcsy6K6Zc9lI7": {
+      "amount": 10,
+      "date": "2025-05-19T15:12:36.967Z",
+      "source": "CF - Catriona Morrow",
+      "timestamp": 1747667534462
+    },
+    "-OQd5cO5qfP8WmU13fqL": {
+      "amount": 20,
+      "date": "2025-05-19T15:12:54.347Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747667551840
+    },
+    "-OQd5fmF0Ylcqo5UGy4D": {
+      "amount": 10,
+      "date": "2025-05-19T15:13:08.245Z",
+      "source": "CF - Dawn McAra",
+      "timestamp": 1747667565738
+    },
+    "-OQd5iBle8kr_EoczBbf": {
+      "amount": 50,
+      "date": "2025-05-19T15:13:18.134Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747667575627
+    },
+    "-OQd67GHJuo-zYHgseme": {
+      "amount": 10,
+      "date": "2025-05-19T15:15:04.919Z",
+      "source": "CF - Unknown (money didnt add up)",
+      "timestamp": 1747667682410
+    },
+    "-OQdDEavxYZL7PhYAC4Q": {
+      "amount": 1000,
+      "date": "2025-05-19T15:46:10.016Z",
+      "source": "Exxon Mobil",
+      "timestamp": 1747669547482
+    },
+    "-OQdDeE3nufetUWLfVHf": {
+      "amount": 10,
+      "date": "2025-05-19T15:47:58.849Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747669656310
+    },
+    "-OQe2_whK9YkCvVfwSxk": {
+      "amount": 25,
+      "date": "2025-05-19T19:39:15.359Z",
+      "source": "CF - Raymond Dormer",
+      "timestamp": 1747683532618
+    },
+    "-OQe2daJGq2i5znjuRLJ": {
+      "amount": 150,
+      "date": "2025-05-19T19:39:30.310Z",
+      "source": "CF - Baird Optometrists",
+      "timestamp": 1747683547569
+    },
+    "-OQe2fcF0gQcLo6pQAw2": {
+      "amount": 20,
+      "date": "2025-05-19T19:39:38.626Z",
+      "source": "CF - Laura Allan",
+      "timestamp": 1747683555885
+    },
+    "-OQe2i_jwwJ7O_MiTfgx": {
+      "amount": 100,
+      "date": "2025-05-19T19:39:50.753Z",
+      "source": "CF - John B D Baird",
+      "timestamp": 1747683568010
+    },
+    "-OQe2lezQzUIHALHzeZU": {
+      "amount": 50,
+      "date": "2025-05-19T19:40:03.377Z",
+      "source": "CF - Sara Green",
+      "timestamp": 1747683580636
+    },
+    "-OQeHXAz1hP8ILOqgMi-": {
+      "amount": 20,
+      "date": "2025-05-19T20:44:32.172Z",
+      "source": "CF -  Jen Marshall",
+      "timestamp": 1747687449374
+    },
+    "-OQeHZNfdJeO1NB2-4yw": {
+      "amount": 4,
+      "date": "2025-05-19T20:44:41.176Z",
+      "source": "CF - Christina Forester",
+      "timestamp": 1747687458389
+    },
+    "-OQeHcKk4WVt_8Kw_6gv": {
+      "amount": 20,
+      "date": "2025-05-19T20:44:57.373Z",
+      "source": "CF - The Hills",
+      "timestamp": 1747687474573
+    },
+    "-OQgI-8YpI4KOeRSUejO": {
+      "amount": 500,
+      "date": "2025-05-20T06:05:28.716Z",
+      "source": "- James Baird - 'EnergySys'",
+      "timestamp": 1747721126542
+    },
+    "-OQgI42aH1zFykUylGyQ": {
+      "amount": 20,
+      "date": "2025-05-20T06:05:48.817Z",
+      "source": "CF - Alison Webster",
+      "timestamp": 1747721146643
+    },
+    "-OQgI732mLFCp7bfWU_s": {
+      "amount": 100,
+      "date": "2025-05-20T06:06:01.134Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747721158958
+    },
+    "-OQgIAA0O8DR2kyACNYd": {
+      "amount": 20,
+      "date": "2025-05-20T06:06:13.868Z",
+      "source": "CF - Eleanor Maly",
+      "timestamp": 1747721171690
+    },
+    "-OQh8c-vFamJaTobqQ9l": {
+      "amount": 20,
+      "date": "2025-05-20T10:04:05.916Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747735445607
+    },
+    "-OQh8h0RKAb-L7N5aLbN": {
+      "amount": 5,
+      "date": "2025-05-20T10:04:26.430Z",
+      "source": "CF - Angus Cockayne",
+      "timestamp": 1747735466118
+    },
+    "-OQh8loeV8mAipSqO6MO": {
+      "amount": 50,
+      "date": "2025-05-20T10:04:46.092Z",
+      "source": "CF - Johnston Roger",
+      "timestamp": 1747735485830
+    },
+    "-OQh8plkzXrg1Ff24ZDO": {
+      "amount": 40,
+      "date": "2025-05-20T10:05:02.291Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747735501979
+    },
+    "-OQhK_WPlBwRdIPMfNS3": {
+      "amount": 500,
+      "date": "2025-05-20T10:56:45.199Z",
+      "source": "NatWest",
+      "timestamp": 1747738581112
+    },
+    "-OQhNwh8r-SLoqvWC9oy": {
+      "amount": 11,
+      "date": "2025-05-20T11:11:02.960Z",
+      "source": "Nicki McKenzie",
+      "timestamp": 1747739462991
+    },
+    "-OQi8WWRx3Sv98NN9eNV": {
+      "amount": 2500,
+      "date": "2025-05-20T14:43:40.476Z",
+      "source": "Arnold Clark Community Fund",
+      "timestamp": 1747752196182
+    },
+    "-OQiNmDtqAeXU-JkniWx": {
+      "amount": 20,
+      "date": "2025-05-20T15:49:57.888Z",
+      "source": "CF- Martin Perry",
+      "timestamp": 1747756196922
+    },
+    "-OQiNqnnWgeuo3NbMgb8": {
+      "amount": 5,
+      "date": "2025-05-20T15:50:16.635Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747756215590
+    },
+    "-OQidFUux-HnnSxYvuns": {
+      "amount": 20,
+      "date": "2025-05-20T17:01:55.083Z",
+      "source": "- CF - Anonymous",
+      "timestamp": 1747760515111
+    },
+    "-OQjEbVqL1V4BD0bUtj5": {
+      "amount": 20,
+      "date": "2025-05-20T19:49:31.536Z",
+      "source": "CF - Whitworth Grandparents",
+      "timestamp": 1747770571784
+    },
+    "-OQjEf8wIybdvzYxi8Mi": {
+      "amount": 30,
+      "date": "2025-05-20T19:49:46.454Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747770586703
+    },
+    "-OQlk9G2cGEUeCW64mOG": {
+      "amount": 20,
+      "date": "2025-05-21T07:29:39.469Z",
+      "source": "CF - Glenda Carruthers",
+      "timestamp": 1747812656245
+    },
+    "-OQlkDclT9H7tgvXWZWI": {
+      "amount": 11,
+      "date": "2025-05-21T07:29:57.372Z",
+      "source": "CF - Miss Tryba",
+      "timestamp": 1747812674147
+    },
+    "-OQlkHpp6xstC0pXOdTk": {
+      "amount": 100,
+      "date": "2025-05-21T07:30:14.592Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747812691366
+    },
+    "-OQm6Tuk1drMb5F_V_y-": {
+      "amount": 1000,
+      "date": "2025-05-21T09:12:49.979Z",
+      "source": "Ian Gallacher Jewelers",
+      "timestamp": 1747818770173
+    },
+    "-OQm7zFKDQVzgrfT1nTz": {
+      "amount": 11,
+      "date": "2025-05-21T09:19:24.731Z",
+      "source": "CF - Miss Tryba",
+      "timestamp": 1747819164761
+    },
+    "-OQm85QE50A_JL7IfU5C": {
+      "amount": 100,
+      "date": "2025-05-21T09:19:54.087Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747819194186
+    },
+    "-OQmUnUl1b3CFc0-blLZ": {
+      "amount": 25,
+      "date": "2025-05-21T10:59:05.866Z",
+      "source": "CF - Living with Pet Bereavement",
+      "timestamp": 1747825145933
+    },
+    "-OQoLjUmv1vEwSe9WGnJ": {
+      "amount": 500,
+      "date": "2025-05-21T19:39:11.154Z",
+      "source": "Briggs Marine",
+      "timestamp": 1747856325041
+    },
+    "-OQome1OsioF-xBWgeus": {
+      "amount": 25,
+      "date": "2025-05-21T21:39:26.495Z",
+      "source": "CF - Sir William Johnston",
+      "timestamp": 1747863642302
+    },
+    "-OQomio23cFMWmfl3pWE": {
+      "amount": 500,
+      "date": "2025-05-21T21:39:46.060Z",
+      "source": "Al Forbes Architects",
+      "timestamp": 1747863661869
+    },
+    "-OQrGmmjv0yrDV0pCu6X": {
+      "amount": 20,
+      "date": "2025-05-22T09:15:59.416Z",
+      "source": "CF - Tracey Kime-Warren",
+      "timestamp": 1747905359094
+    },
+    "-OQrGrxnjbVXEF1qPa5b": {
+      "amount": 10,
+      "date": "2025-05-22T09:16:20.609Z",
+      "source": "CF - Jayne Hardaker",
+      "timestamp": 1747905380278
+    },
+    "-OQrGuX4cRu3ns1Kl5hC": {
+      "amount": 20,
+      "date": "2025-05-22T09:16:31.122Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747905390792
+    },
+    "-OQrGwpG7-bnaOU-X-QM": {
+      "amount": 40,
+      "date": "2025-05-22T09:16:40.543Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1747905400256
+    },
+    "-OQrR0A0bEUwBY1iPhtv": {
+      "amount": 10,
+      "date": "2025-05-22T10:00:40.011Z",
+      "source": "CF - Caroline Findlay",
+      "timestamp": 1747908039402
+    },
+    "-OQsyKItrdtl7CHkBMkx": {
+      "amount": 250,
+      "date": "2025-05-22T17:10:11.977Z",
+      "source": "Donated through School - Graham Smith",
+      "timestamp": 1747933812001
+    },
+    "-OQtmTdHRWwQtwYqNlp-": {
+      "amount": 10,
+      "date": "2025-05-22T20:58:03.093Z",
+      "source": "CF -  Ann",
+      "timestamp": 1747947481728
+    },
+    "-OQx4yP4gNi42CYAMb41": {
+      "amount": 40,
+      "date": "2025-05-23T12:22:33.056Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1748002924997
+    },
+    "-OR0b3gCSvPW3IM7a35t": {
+      "amount": 20,
+      "date": "2025-05-24T09:25:10.498Z",
+      "source": "CF - Jane Mullen",
+      "timestamp": 1748078709565
+    },
+    "-OR0b9nAmbQ2MuV08jNU": {
+      "amount": 20,
+      "date": "2025-05-24T09:25:35.525Z",
+      "source": "CF - Kirsten Rodger",
+      "timestamp": 1748078734633
+    },
+    "-OR0bDzeUPLVXVN3AErG": {
+      "amount": 40,
+      "date": "2025-05-24T09:25:52.706Z",
+      "source": "CF - Kate R Anderson",
+      "timestamp": 1748078751771
+    },
+    "-OR0bIDCTImrN-xEfCz6": {
+      "amount": 10,
+      "date": "2025-05-24T09:26:10.022Z",
+      "source": "CF - Jacksonpauls",
+      "timestamp": 1748078769150
+    },
+    "-OR611ePvyXJua_pb30l": {
+      "amount": 20,
+      "date": "2025-05-25T10:41:05.113Z",
+      "source": "CF - Stacie Costantini",
+      "timestamp": 1748169665221
+    },
+    "-OR6148VOF5tajiAhEZn": {
+      "amount": 40,
+      "date": "2025-05-25T10:41:15.297Z",
+      "source": "CF - Lorraine McMaster",
+      "timestamp": 1748169675404
+    },
+    "-OR62YhzZBtC714LSWJ3": {
+      "amount": 1000,
+      "date": "2025-05-25T10:47:42.656Z",
+      "source": "CAVU Aerospace (Stirling Uni, No Shirt Sponsor/Printing Required!)",
+      "timestamp": 1748170062785
+    },
+    "-ORAxYWaj-OGTv51RWo2": {
+      "amount": 500,
+      "date": "2025-05-26T09:39:35.603Z",
+      "source": "Forefront Energy",
+      "timestamp": 1748252375179
+    },
+    "-ORByuLfGmIU85Tfl-hZ": {
+      "amount": 40,
+      "date": "2025-05-26T14:25:08.877Z",
+      "source": "CF - David Hamilton",
+      "timestamp": 1748269508055
+    },
+    "-ORKldU1FTc_3LJL57fE": {
+      "amount": 40,
+      "date": "2025-05-28T07:23:46.588Z",
+      "source": "CF - Katie Gammie",
+      "timestamp": 1748417026036
+    },
+    "-ORKlfa_z4F4RBIk7iGC": {
+      "amount": 10,
+      "date": "2025-05-28T07:23:55.265Z",
+      "source": "CF - Jen Boyle",
+      "timestamp": 1748417034704
+    },
+    "-ORKlkbeqKEZxyiF5swP": {
+      "amount": 30,
+      "date": "2025-05-28T07:24:15.814Z",
+      "source": "CF - fionareid",
+      "timestamp": 1748417055303
+    },
+    "-ORQtGwCk1FoTXkCjlEP": {
+      "amount": 10,
+      "date": "2025-05-29T11:54:49.796Z",
+      "source": "CF - Miss Millar",
+      "timestamp": 1748519690073
+    },
+    "-ORSUrqVHDrRt1nu1FQ4": {
+      "amount": 10,
+      "date": "2025-05-29T19:23:04.561Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1748546584020
+    },
+    "-OR_nFWHpg4hGuc5TtL8": {
+      "amount": 25,
+      "date": "2025-05-31T10:04:42.650Z",
+      "source": "CF - LeaThePea",
+      "timestamp": 1748685883580
+    },
+    "-OR_nLLZ5-5N3-4byglb": {
+      "amount": 50,
+      "date": "2025-05-31T10:05:06.541Z",
+      "source": "CF - Mollie Whitworth",
+      "timestamp": 1748685907463
+    },
+    "-OR_nP1PEzdqLoaukrRq": {
+      "amount": 10,
+      "date": "2025-05-31T10:05:21.635Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1748685922507
+    },
+    "-OR_naHowk64DHpENRMa": {
+      "amount": 40,
+      "date": "2025-05-31T10:06:11.837Z",
+      "source": "CF- Marys McMillan",
+      "timestamp": 1748685972735
+    },
+    "-OR_ngEkGa1G8rvGJSIQ": {
+      "amount": 5,
+      "date": "2025-05-31T10:06:36.218Z",
+      "source": "CF - Helen Hopper",
+      "timestamp": 1748685997093
+    },
+    "-OR_nmjG1LdahSCGKUzC": {
+      "amount": 40,
+      "date": "2025-05-31T10:07:02.810Z",
+      "source": "CF - Jane Stewart",
+      "timestamp": 1748686023686
+    },
+    "-OR_ns2-EhyaM3eQBS2G": {
+      "amount": 20,
+      "date": "2025-05-31T10:07:24.554Z",
+      "source": "CF - Pamela Thomson",
+      "timestamp": 1748686045435
+    },
+    "-OR_nz2B2hQPy40OqhnJ": {
+      "amount": 50,
+      "date": "2025-05-31T10:07:53.238Z",
+      "source": "CF - Amy Whalley",
+      "timestamp": 1748686074108
+    },
+    "-OR_o0wNKVKY8E9bjobN": {
+      "amount": 20,
+      "date": "2025-05-31T10:08:05.090Z",
+      "source": "CF - Anonymous",
+      "timestamp": 1748686086015
+    },
+    "-OR_o4jPFHy6zBvyQJcv": {
+      "amount": 20,
+      "date": "2025-05-31T10:08:20.642Z",
+      "source": "CF - Andrew Cockayne",
+      "timestamp": 1748686101520
+    },
+    "-ORezES0tOXwgcpHe4pE": {
+      "amount": 20,
+      "date": "2025-06-01T10:15:11.111Z",
+      "source": "CF - Angela Neilson",
+      "timestamp": 1748772910963
+    },
+    "-ORezI4RKcgcM4ASo89F": {
+      "amount": 20,
+      "date": "2025-06-01T10:15:25.988Z",
+      "source": "CF - Katrina Imrie",
+      "timestamp": 1748772925883
+    }
+  },
+  "totalRaised": 14027
+}
