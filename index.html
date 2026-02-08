@@ -434,7 +434,7 @@
                 </div>
                 <div id="container">
                     <div id="left-panel">
-                        <h1>Amount Left to Raise</h1>
+                        <h1>Total Raised</h1>
                         <div id="amount-left"></div>
                         <h2>Time Left</h2>
                         <div id="countdown"></div>
@@ -509,12 +509,13 @@
                 seconds + ' seconds';
         }
 
+        // Show total raised and force 100% bar
         function updateProgress(raisedAmount) {
-            const amountLeft = Math.max(goalAmount - raisedAmount, 0);
-            const progressPercent = Math.min((raisedAmount / goalAmount) * 100, 100);
-            document.getElementById('amount-left').textContent = '£' + amountLeft.toLocaleString();
+            document.getElementById('amount-left').textContent =
+                '£' + raisedAmount.toLocaleString();
 
-            const percentText = Math.round(progressPercent) + "%";
+            const progressPercent = 100;
+            const percentText = progressPercent + "%";
             document.getElementById('progress-percent').textContent = percentText;
 
             if (window.innerWidth <= 600) {
